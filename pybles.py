@@ -96,7 +96,7 @@ class Pyble(object):
     self.__show_dots(header)
 
     for cell in header:
-      header_as_string += " %s%s %s" % (cell['name'], " " * (cell['len'] - len(cell['name'])), self.column_token)
+      header_as_string += " %s%s %s" % (cell['name'].upper(), " " * (cell['len'] - len(cell['name'])), self.column_token)
 
     print header_as_string
 
