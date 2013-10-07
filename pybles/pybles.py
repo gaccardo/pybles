@@ -148,21 +148,3 @@ class Pyble(object):
     if len(lines) != 0:
       self.__show_lines(lines, header, highlight)
 
-
-if __name__ == '__main__':
-  PB = Pyble('-', '|')
-
-  PB.add_column('Nombre')
-  PB.add_column('Apellido')
-  PB.add_column('Edad')
-
-  PB.add_line(['Guido', 'Accardo', 26])
-  PB.add_line(['Guido', 'Pepe', 56])
-  PB.add_line(['Tito', 'Puente', 26])
-  PB.add_line(['Rostulamo', 'Pernambucano da Silva', 26])
-
-  PB.show_table(highlight='Guido')
-
-  print PB.get_table_as_json()
-
-  PB.get_table_info()
