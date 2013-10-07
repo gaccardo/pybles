@@ -1,0 +1,27 @@
+Metadata-Version: 1.0
+Name: Pybles
+Version: 1.0.1
+Summary: Module to represent tables in the terminal using pyton
+Home-page: http://pypi.python.org/pypi/Pybles/
+Author: Guido Accardo
+Author-email: gaccardo@gmail.com
+License: LICENSE.txt
+Description: ===========
+        Pybles
+        ===========
+        
+        This is a modules designed to make table representations very easy and fast. This is how to use it:
+        
+            #!/usr/bin/env python
+        
+            import pybles
+        
+            PB = pybles.Pyble()
+            PB.add_column('First Name')
+            PB.add_column('Last Name')
+            PB.add_line(['John', 'Doe'])
+            PB.show_table()
+            
+        
+        
+Platform: UNKNOWN

@@ -1,0 +1,5 @@
+v1.0, 06/10/2013 -- Initial release.
+v1.0.1, 06/10/2013 -- Modify of documentation.
+v1.0.2, 07/10/2013 -- Header strings are uppercase
+v1.0.3, 07/10/2013 -- Setup.py now uses setuptools
+v1.0.4, 07/10/2013 -- Changes in the documentation
