@@ -17,7 +17,7 @@ class HeaderAlreadySet(Exception):
 
 class Colors(object):
   HEADER = '\033[95m'
-  OKBLUE = '\033[42m\033[1;31m'
+  OKBLUE = '\033[46m\033[1;31m'
   OKGREEN = '\033[92m'
   WARNING = '\033[93m'
   FAIL = '\033[91m'
@@ -114,7 +114,10 @@ class Pyble(object):
     self.__show_dots(header)
 
     for cell in header:
-      header_as_string += " %s%s %s" % (cell['name'].upper(), " " * (cell['len'] - len(cell['name'])), self.column_token)
+      if self.color:
+        header_as_string += " %s%s %s" % (cell['name'].upper(), " " * (cell['len'] - len(cell['name'])), self.column_token)
+      else:
+        header_as_string += " %s%s %s" % (cell['name'].upper(), " " * (cell['len'] - len(cell['name'])), self.column_token)
 
     print header_as_string
 
@@ -136,7 +139,7 @@ class Pyble(object):
           lines_as_string += " %s%s %s" % (name, " " * (cell['len'] - len(cell['name'])), self.column_token)
         except TypeError:
           if color == 1:
-            lines_as_string += " %s%s%s%s %s" % (self.c.OKBLUE, name, self.c.ENDC, " " * (cell['len'] - len(str(cell['name']))), self.column_token)
+            lines_as_string += " %s%s%s%s %s" % (self.c.OKBLUE, name, " " * (cell['len'] - len(str(cell['name']))), self.c.ENDC, self.column_token)
           else:
             lines_as_string += " %s%s %s" % (name, " " * (cell['len'] - len(str(cell['name']))), self.column_token)
 
