@@ -38,9 +38,6 @@ Now, table can have colors:
 
     PB.set_color(True)
     
-    
-For further information see: http://pythonhosted.org//Pybles
-
     PB.add_column('First Name')
 
     PB.add_column('Last Name')
@@ -48,3 +45,6 @@ For further information see: http://pythonhosted.org//Pybles
     PB.add_line(['John', 'Doe'])
 
     PB.show_table()
+
+
+For further information see: http://pythonhosted.org//Pybles
