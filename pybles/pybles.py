@@ -15,6 +15,16 @@ class HeaderAlreadySet(Exception):
     return "El numero de columnas no puede ser modificado una vez seteadas filas"
 
 
+class Colors(object):
+  HEADER = '\033[95m'
+  OKBLUE = '\033[42m\033[1;31m'
+  OKGREEN = '\033[92m'
+  WARNING = '\033[93m'
+  FAIL = '\033[91m'
+  ENDC = '\033[0m'
+
+
+
 class Pyble(object):
 
   def __init__(self, row_token=None, column_token=None):
@@ -24,6 +34,8 @@ class Pyble(object):
     self.longest      = 0
     self.row_token    = '-'
     self.column_token = '|'
+    self.c = Colors()
+    self.color = False
 
     if row_token != None:
       self.row_token = row_token[0]
@@ -33,6 +45,12 @@ class Pyble(object):
 
   def __str__(self):
     self.get_table_info()
+
+  def get_color(self):
+    return self.color
+
+  def set_color(self, color):
+    self.color = color
 
   def add_column(self, title):
     if len(self.lines) == 0:
@@ -105,6 +123,7 @@ class Pyble(object):
   def __show_lines(self, lines, header, highlight=None):
     lines_as_string = ""
     t = Terminal()
+    color = 0
 
     for line in lines:
       lines_as_string += self.column_token
@@ -116,7 +135,16 @@ class Pyble(object):
 
           lines_as_string += " %s%s %s" % (name, " " * (cell['len'] - len(cell['name'])), self.column_token)
         except TypeError:
-          lines_as_string += " %s%s %s" % (name, " " * (cell['len'] - len(str(cell['name']))), self.column_token)
+          if color == 1:
+            lines_as_string += " %s%s%s%s %s" % (self.c.OKBLUE, name, self.c.ENDC, " " * (cell['len'] - len(str(cell['name']))), self.column_token)
+          else:
+            lines_as_string += " %s%s %s" % (name, " " * (cell['len'] - len(str(cell['name']))), self.column_token)
+
+      if self.color:
+        if color == 0:
+          color = 1
+        else:
+          color = 0
 
       lines_as_string += "\n"
 
