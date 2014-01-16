@@ -26,3 +26,20 @@ Output:
     --------------------------
     | John       | Doe       |
     --------------------------
+
+Now, table can have colors:
+
+    #!/usr/bin/env python
+
+    PB = pybles.Pyble(header_color='STRONG_RED',
+        header_background_color='BG_WHITE')
+
+    PB.set_color(True)
+
+    PB.add_column('First Name')
+
+    PB.add_column('Last Name')
+
+    PB.add_line(['John', 'Doe'])
+
+    PB.show_table()
