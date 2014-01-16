@@ -16,12 +16,38 @@ class HeaderAlreadySet(Exception):
 
 
 class Colors(object):
+
   HEADER = '\033[95m'
   OKBLUE = '\033[47m\033[1;30m'
-  OKGREEN = '\033[92m'
+  OKGREEN = '\033[42m\033[1;37m'
   WARNING = '\033[93m'
   FAIL = '\033[91m'
   ENDC = '\033[0m'
+
+  def __init__(self):
+    self.header = None
+    self.cell = None
+
+    self.color_names = {'OKBLUE': self.OKBLUE,
+                        'OKGREEN': self.OKGREEN }
+
+  def set_header_color(self, name):
+    try:
+      self.header = self.color_names[name]
+    except:
+      self.header = HEADER
+
+  def set_cell_color(self, name):
+    try:
+      self.cell = self.color_names[name]
+    except:
+      self.cell = OKBLUE
+
+  def get_header_color(self):
+    return self.header
+
+  def get_cell_color(self):
+    return self.cell
 
 
 
@@ -141,7 +167,8 @@ class Pyble(object):
           if color == 1:
             lines_as_string += " %s%s%s%s %s" % (self.c.OKBLUE, name, " " * (cell['len'] - len(str(cell['name']))), self.c.ENDC, self.column_token)
           else:
-            lines_as_string += " %s%s %s" % (name, " " * (cell['len'] - len(str(cell['name']))), self.column_token)
+            lines_as_string += " %s%s%s%s %s" % (self.c.OKGREEN, name, " " * (cell['len'] - len(str(cell['name']))), self.c.ENDC, self.column_token)
+            #lines_as_string += " %s%s %s" % (name, " " * (cell['len'] - len(str(cell['name']))), self.column_token)
 
       if self.color:
         if color == 0:
