@@ -6,7 +6,7 @@ This is a modules designed to make table representations very easy and fast. Thi
 
     #!/usr/bin/env python
 
-    import pybles
+    from pybles import pybles
 
     PB = pybles.Pyble()
 
@@ -26,3 +26,25 @@ Output:
     --------------------------
     | John       | Doe       |
     --------------------------
+
+Now, table can have colors:
+
+    #!/usr/bin/env python
+
+    from pybles import pybles
+
+    PB = pybles.Pyble(header_color='STRONG_RED',
+        header_background_color='BG_WHITE')
+
+    PB.set_color(True)
+    
+    PB.add_column('First Name')
+
+    PB.add_column('Last Name')
+
+    PB.add_line(['John', 'Doe'])
+
+    PB.show_table()
+
+
+For further information see: http://pythonhosted.org//Pybles
