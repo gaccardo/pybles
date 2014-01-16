@@ -35,9 +35,11 @@ class Colors(object):
 
   def __init__(self):
     self.header = None
-    self.cell = None
+    self.cell_a = None
+    self.cell_b = None
     self.bg_header = ""
-    self.bg_cell = ""
+    self.bg_a_cell = ""
+    self.bg_b_cell = ""
 
     self.color_names = {'OKBLUE': self.OKBLUE,
                         'OKGREEN': self.OKGREEN,
@@ -74,11 +76,17 @@ class Colors(object):
     except:
       self.header = self.HEADER
 
-  def set_cell_color(self, name):
+  def set_cell_a_color(self, name):
     try:
-      self.cell = self.color_names[name]
+      self.cell_a = self.color_names[name]
     except:
-      self.cell = self.OKBLUE
+      self.cell_a = self.OKBLUE
+
+  def set_cell_b_color(self, name):
+    try:
+      self.cell_b = self.color_names[name]
+    except:
+      self.cell_b = self.OKBLUE
 
   def set_header_background_color(self, name):
     try:
@@ -86,11 +94,17 @@ class Colors(object):
     except:
       self.bg_header = None
 
-  def set_cell_background_color(self, name):
+  def set_cell_a_background_color(self, name):
     try:
-      self.bg_cell = self.color_names[name]
+      self.bg_cell_a = self.color_names[name]
     except:
-      self.bg_cell = None
+      self.bg_cell_a = None
+
+  def set_cell_b_background_color(self, name):
+    try:
+      self.bg_cell_b = self.color_names[name]
+    except:
+      self.bg_cell_b = None
 
   def get_header_color(self):
     if self.header is None:
@@ -98,17 +112,26 @@ class Colors(object):
 
     return self.header
 
-  def get_cell_color(self):
-    if self.cell is None:
+  def get_cell_a_color(self):
+    if self.cell_a is None:
       return self.OKBLUE
 
-    return self.cell
+    return self_a.cell
+
+  def get_cell_b_color(self):
+    if self.cell_b is None:
+      return self.OKBLUE
+
+    return self.cell_b
 
   def get_header_background_color(self):
     return self.bg_header
 
-  def get_cell_background_color(self):
-    return self.bg_cell
+  def get_cell_a_background_color(self):
+    return self.bg_cell_a
+
+  def get_cell_b_background_color(self):
+    return self.bg_cell_b
 
   def get_sample(self):
     for color in self.color_names:

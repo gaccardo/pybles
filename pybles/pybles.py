@@ -19,7 +19,9 @@ class HeaderAlreadySet(Exception):
 class Pyble(object):
 
   def __init__(self, row_token=None, column_token=None, 
-              header_color='STRONG_YELLOW', header_background_color='BG_BLUE'):
+              header_color='STRONG_YELLOW', header_background_color='BG_BLUE',
+              cell_a_color='STRONG_BLUE', cell_b_color='STRONG_YELLOW',
+              cell_a_background_color='BG_YELLOW', cell_b_background_color='BG_BLUE'):
   
     self.table        = list()
     self.header       = list()
@@ -31,6 +33,10 @@ class Pyble(object):
     self.c = Colors()
     self.c.set_header_color(header_color)
     self.c.set_header_background_color(header_background_color)
+    self.c.set_cell_a_color(header_color)
+    self.c.set_cell_b_color(header_color)
+    self.c.set_cell_a_background_color(header_color)
+    self.c.set_cell_b_background_color(header_color)
 
     self.color = False
 
