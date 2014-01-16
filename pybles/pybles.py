@@ -17,7 +17,7 @@ class HeaderAlreadySet(Exception):
 
 class Colors(object):
   HEADER = '\033[95m'
-  OKBLUE = '\033[46m\033[1;31m'
+  OKBLUE = '\033[47m\033[1;30m'
   OKGREEN = '\033[92m'
   WARNING = '\033[93m'
   FAIL = '\033[91m'
@@ -115,7 +115,7 @@ class Pyble(object):
 
     for cell in header:
       if self.color:
-        header_as_string += " %s%s %s" % (cell['name'].upper(), " " * (cell['len'] - len(cell['name'])), self.column_token)
+        header_as_string += " %s%s%s%s %s" % (self.c.HEADER, cell['name'].upper(), " " * (cell['len'] - len(cell['name'])), self.c.ENDC, self.column_token)
       else:
         header_as_string += " %s%s %s" % (cell['name'].upper(), " " * (cell['len'] - len(cell['name'])), self.column_token)
 
@@ -178,4 +178,3 @@ class Pyble(object):
 
     if len(lines) != 0:
       self.__show_lines(lines, header, highlight)
-
