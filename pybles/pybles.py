@@ -111,9 +111,15 @@ class Pyble(object):
 
     for cell in header:
       if self.color:
-        header_as_string += " %s%s%s%s%s %s" % (self.c.get_header_background_color(), self.c.get_header_color(), cell['name'].upper(), " " * (cell['len'] - len(cell['name'])), self.c.ENDC, self.column_token)
+        header_as_string += " %s%s%s%s%s %s" % (self.c.get_header_background_color(), 
+                                                self.c.get_header_color(), 
+                                                cell['name'].upper(), 
+                                                " " * (cell['len'] - len(cell['name'])), 
+                                                self.c.ENDC, self.column_token)
       else:
-        header_as_string += " %s%s %s" % (cell['name'].upper(), " " * (cell['len'] - len(cell['name'])), self.column_token)
+        header_as_string += " %s%s %s" % (cell['name'].upper(), 
+                                          " " * (cell['len'] - len(cell['name'])), 
+                                          self.column_token)
 
     print header_as_string
 
@@ -132,18 +138,30 @@ class Pyble(object):
           if highlight in name:
             name = "%s" % t.bold_black_on_yellow(name)
 
-          lines_as_string += " %s%s %s" % (name, " " * (cell['len'] - len(cell['name'])), self.column_token)
+          lines_as_string += " %s%s %s" % (name,
+                                           " " * (cell['len'] - len(cell['name'])),
+                                           self.column_token)
         except TypeError:
           if self.color:
             if color == 1:
-              #lines_as_string += " %s%s%s%s %s" % (self.c.OKBLUE, name, " " * (cell['len'] - len(str(cell['name']))), self.c.ENDC, self.column_token)
-              lines_as_string += " %s%s%s%s%s %s" % (self.c.get_cell_a_background_color(), self.c.get_cell_a_color(), name, " " * (cell['len'] - len(str(cell['name']))), self.c.ENDC, self.column_token)
+              lines_as_string += " %s%s%s%s%s %s" % (self.c.get_cell_a_background_color(), 
+                                                     self.c.get_cell_a_color(), 
+                                                     name, 
+                                                     " " * (cell['len'] - len(str(cell['name']))), 
+                                                     self.c.ENDC, 
+                                                     self.column_token)
             else:
-              #lines_as_string += " %s%s%s%s %s" % (self.c.OKGREEN, name, " " * (cell['len'] - len(str(cell['name']))), self.c.ENDC, self.column_token)
-              lines_as_string += " %s%s%s%s %s" % (self.c.get_cell_b_background_color(), name, " " * (cell['len'] - len(str(cell['name']))), self.c.ENDC, self.column_token)
+              lines_as_string += " %s%s%s%s%s %s" % (self.c.get_cell_b_background_color(), 
+                                                   self.c.get_cell_b_color(),
+                                                   name,
+                                                   " " * (cell['len'] - len(str(cell['name']))),
+                                                   self.c.ENDC, 
+                                                   self.column_token)
               
           else:
-            lines_as_string += " %s%s %s" % (name, " " * (cell['len'] - len(str(cell['name']))), self.column_token)
+            lines_as_string += " %s%s %s" % (name, 
+                                             " " * (cell['len'] - len(str(cell['name']))),
+                                             self.column_token)
 
       if self.color:
         if color == 0:
