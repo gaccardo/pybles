@@ -7,13 +7,13 @@ import json
 class IncorrectNumberOfCells(Exception):
 
   def __str__(self):
-    return "La cantidad de celdas es incorrecta"
+    return "The amount of cells is icorrect"
 
 
 class HeaderAlreadySet(Exception):
 
   def __str__(self):
-    return "El numero de columnas no puede ser modificado una vez seteadas filas"
+    return "The number of columns can't be modified once a line has been added"
 
 
 class Pyble(object):
