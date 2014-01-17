@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='Pybles',
-    version='1.0.7',
+    version='1.0.8',
     author='Guido Accardo',
     author_email='gaccardo@gmail.com',
     packages=['pybles'],

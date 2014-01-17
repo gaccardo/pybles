@@ -2,11 +2,11 @@
 Pybles
 ===========
 
-This is a modules designed to make table representations very easy and fast. This is how to use it:
+This is a module designed to make table representations very easy and fast. This is how to use it:
 
     #!/usr/bin/env python
 
-    from pybles import pybles
+    import pybles
 
     PB = pybles.Pyble()
 
@@ -17,7 +17,7 @@ This is a modules designed to make table representations very easy and fast. Thi
     PB.add_line(['John', 'Doe'])
 
     PB.show_table()
-
+    
 
 Output:
 
@@ -26,25 +26,3 @@ Output:
     --------------------------
     | John       | Doe       |
     --------------------------
-
-Now, table can have colors:
-
-    #!/usr/bin/env python
-
-    from pybles import pybles
-
-    PB = pybles.Pyble(header_color='STRONG_RED',
-        header_background_color='BG_WHITE')
-
-    PB.set_color(True)
-    
-    PB.add_column('First Name')
-
-    PB.add_column('Last Name')
-
-    PB.add_line(['John', 'Doe'])
-
-    PB.show_table()
-
-
-For further information see: http://pythonhosted.org//Pybles

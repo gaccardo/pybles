@@ -2,7 +2,7 @@
 Pybles
 ===========
 
-This is a modules designed to make table representations very easy and fast. This is how to use it:
+This is a module designed to make table representations very easy and fast. This is how to use it:
 
     #!/usr/bin/env python
 
