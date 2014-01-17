@@ -20,7 +20,7 @@ class Pyble(object):
 
   def __init__(self, row_token=None, column_token=None, 
               header_color='STRONG_YELLOW', header_background_color='BG_BLUE',
-              cell_a_color='STRONG_BLUE', cell_b_color='STRONG_YELLOW',
+              cell_a_color='BLUE', cell_b_color='YELLOW',
               cell_a_background_color='BG_YELLOW', cell_b_background_color='BG_BLUE'):
   
     self.table        = list()
@@ -37,6 +37,10 @@ class Pyble(object):
     self.c.set_cell_b_color(header_color)
     self.c.set_cell_a_background_color(header_color)
     self.c.set_cell_b_background_color(header_color)
+    self.c.set_cell_a_color(cell_a_color)
+    self.c.set_cell_b_color(cell_b_color)
+    self.c.set_cell_a_background_color(cell_a_background_color)
+    self.c.set_cell_b_background_color(cell_b_background_color)
 
     self.color = False
 
@@ -143,10 +147,12 @@ class Pyble(object):
         except TypeError:
           if self.color:
             if color == 1:
-              lines_as_string += " %s%s%s%s %s" % (self.c.OKBLUE, name, " " * (cell['len'] - len(str(cell['name']))), self.c.ENDC, self.column_token)
+              #lines_as_string += " %s%s%s%s %s" % (self.c.OKBLUE, name, " " * (cell['len'] - len(str(cell['name']))), self.c.ENDC, self.column_token)
+              lines_as_string += " %s%s%s%s%s %s" % (self.c.get_cell_a_background_color(), self.c.get_cell_a_color(), name, " " * (cell['len'] - len(str(cell['name']))), self.c.ENDC, self.column_token)
             else:
-              lines_as_string += " %s%s%s%s %s" % (self.c.OKGREEN, name, " " * (cell['len'] - len(str(cell['name']))), self.c.ENDC, self.column_token)
-              #lines_as_string += " %s%s %s" % (name, " " * (cell['len'] - len(str(cell['name']))), self.column_token)
+              #lines_as_string += " %s%s%s%s %s" % (self.c.OKGREEN, name, " " * (cell['len'] - len(str(cell['name']))), self.c.ENDC, self.column_token)
+              lines_as_string += " %s%s%s%s %s" % (self.c.get_cell_b_background_color(), name, " " * (cell['len'] - len(str(cell['name']))), self.c.ENDC, self.column_token)
+              
           else:
             lines_as_string += " %s%s %s" % (name, " " * (cell['len'] - len(str(cell['name']))), self.column_token)
 

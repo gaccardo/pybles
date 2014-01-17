@@ -116,7 +116,7 @@ class Colors(object):
     if self.cell_a is None:
       return self.OKBLUE
 
-    return self_a.cell
+    return self.cell_a
 
   def get_cell_b_color(self):
     if self.cell_b is None:
