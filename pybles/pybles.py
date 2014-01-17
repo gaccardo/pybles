@@ -1,20 +1,9 @@
 #!/usr/bin/env python
 from blessings import Terminal
 from colors import Colors
+from pyblexceptions import IncorrectNumberOfCells, HeaderAlreadySet
 
 import json
-
-class IncorrectNumberOfCells(Exception):
-
-  def __str__(self):
-    return "The amount of cells is icorrect"
-
-
-class HeaderAlreadySet(Exception):
-
-  def __str__(self):
-    return "The number of columns can't be modified once a line has been added"
-
 
 class Pyble(object):
 
