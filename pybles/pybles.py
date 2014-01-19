@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from blessings import Terminal
+from console import PybleTerminal
 
 import json
 
@@ -148,3 +149,100 @@ class Pyble(object):
     if len(lines) != 0:
       self.__show_lines(lines, header, highlight)
 
+
+class FullScreenPyble(object):
+
+  def __init__(self, row_token=None, column_token=None):
+    self.table        = list()
+    self.header       = list()
+    self.lines        = list()
+    self.longest      = 0
+    self.row_token    = '-'
+    self.column_token = '|'
+
+    if row_token != None:
+      self.row_token = row_token[0]
+
+    if column_token != None:
+      self.column_token = column_token[0]
+
+  def __str__(self):
+    self.get_table_info()
+
+  def add_column(self, title):
+    if len(self.lines) == 0:
+      self.header.append(title) 
+    else:
+      raise HeaderAlreadySet
+
+  def add_line(self, line):
+    if len(line) == self.__get_columns_count():
+      self.lines.append(line)
+    else:
+      raise IncorrectNumberOfCells
+
+  def __get_columns_count(self):
+    return len(self.header)
+
+  def __configure_length(self, old_header, old_lines):
+    header = list()
+    lines  = list()
+
+    for cell in old_header:
+      header.append( {'name': cell, 'len': len(cell)} )
+
+    for line in old_lines:
+      tmp_line = list()
+      for cell in line:
+        try:
+          tmp_line.append( {'name': cell, 'len': len(cell)} )
+        except TypeError:
+          tmp_line.append( {'name': cell, 'len': len(str(cell))} )
+
+      lines.append(tmp_line)
+
+    return header, lines
+
+  def __set_column_length(self, header, lines):
+
+    for cellnumber in range(len(header)):
+      for line in lines:
+        if header[cellnumber]['len'] < line[cellnumber]['len']:
+          header[cellnumber]['len'] = line[cellnumber]['len']
+
+    for cellnumber in range(len(header)):
+      for line in lines:
+        line[cellnumber]['len'] = header[cellnumber]['len']        
+
+    return header, lines
+
+  def __show_dots(self, width):
+    print self.row_token * width
+
+  def __show_header(self, header, w):
+    self.__show_dots(w)
+    text = "| "
+    for cell in header:
+      text += "%s" % (cell['name'])
+      text += " " * (w-len(cell['name'])-3)
+
+    text += "|"
+
+    print text
+    self.__show_dots(w)
+
+  def show_table(self):
+    PyTe = PybleTerminal()
+    w, h = PyTe.get_terminal_size()
+    header, lines = self.__configure_length(self.header, self.lines)
+    header, lines = self.__set_column_length(header, lines)
+
+    self.__show_header(header, w)
+
+
+
+if __name__ == '__main__':
+  FPB = FullScreenPyble()
+  FPB.add_column('Name')
+  FPB.add_line(['Guido'])
+  FPB.show_table()
