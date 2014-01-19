@@ -1,9 +1,26 @@
 #!/usr/bin/env python
 from blessings import Terminal
 from colors import Colors
-from pyblexceptions import IncorrectNumberOfCells, HeaderAlreadySet
+#from pyblexceptions import IncorrectNumberOfCells, HeaderAlreadySet
 
 import json
+
+
+class IncorrectNumberOfCells(Exception):
+
+  def __str__(self, msg=None):
+    return "IncorrectNumberOfCells"
+
+class HeaderAlreadySet(Exception):
+
+  def __str__(self, msg=None):
+    return "HeaderAlreadySet"
+
+class HeaderAlreadySetNotForce(Exception):
+
+  def __str__(self, msg=None):
+    return "HeaderAlreadySet and force is False"
+
 
 class Pyble(object):
 
@@ -47,6 +64,17 @@ class Pyble(object):
 
   def set_color(self, color):
     self.color = color
+
+  def set_header(self, header, force=False):
+    if len(self.header) != 0 and force:
+      self.header = header
+    else:
+      raise HeaderAlreadySetNotForce
+
+    if len(self.lines) == 0:
+      self.header = header
+    else:
+      raise HeaderAlreadySet    
 
   def add_column(self, title):
     if len(self.lines) == 0:
