@@ -1,27 +1,68 @@
-Metadata-Version: 1.0
+Metadata-Version: 1.1
 Name: Pybles
-Version: 1.0.1
-Summary: Module to represent tables in the terminal using pyton
-Home-page: http://pypi.python.org/pypi/Pybles/
+Version: 1.0.10
 Author: Guido Accardo
-Author-email: gaccardo@gmail.com
-License: LICENSE.txt
+Author-email: gaccardo at gmail com
+Home-page: http://pypi.python.org/pypi/Pybles/
+Download-url: https://pypi.python.org/packages/source/P/Pybles/Pybles-1.0.10.tar.gz
+Summary: Module to represent tables in the terminal using python
+License: GPLv2
 Description: ===========
         Pybles
         ===========
+                
+        This is a module designed to make table representations very easy and fast. This is how to use it:
+               
+           >>> from pybles import pybles        
+           >>> PB = pybles.Pyble()
+           >>> PB.add_column('First Name')
+           >>> PB.add_column('Last Name')
+           >>> PB.add_line(['John', 'Doe'])
+           >>> PB.show_table()
+           --------------------------
+           | FIRST NAME | LAST NAME |
+           --------------------------
+           | John       | Doe       |
+           --------------------------
+                    
+        =======
+        Changes
+        =======
         
-        This is a modules designed to make table representations very easy and fast. This is how to use it:
+        ------
+        1.0.10
+        ------
+        * Multiple color lines
+        * PyPi classifiers and package version corrections
+        * Translation fixes
         
-            #!/usr/bin/env python
+        -----
+        1.0.7
+        -----
+        * Color support
         
-            import pybles
+        -----
+        1.0.3
+        -----
+        * Setup now uses setuptools
         
-            PB = pybles.Pyble()
-            PB.add_column('First Name')
-            PB.add_column('Last Name')
-            PB.add_line(['John', 'Doe'])
-            PB.show_table()
-            
+        -----
+        1.0.2
+        -----
+        * Function to force uppercase in header name
         
-        
-Platform: UNKNOWN
+        -----
+        1.0.1
+        -----
+        * First stable version
+Keywords: ssh networking console tools
+Platform: POSIX Systems
+Requires: blessings
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: System :: Networking
+Classifier: Topic :: System :: Systems Administration
+Classifier: Topic :: Terminals
+Classifier: Topic :: Utilities

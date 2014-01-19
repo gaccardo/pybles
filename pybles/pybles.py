@@ -1,30 +1,37 @@
 #!/usr/bin/env python
 from blessings import Terminal
-from console import PybleTerminal
+from colors import Colors
+from pyblexceptions import IncorrectNumberOfCells, HeaderAlreadySet
 
 import json
 
-class IncorrectNumberOfCells(Exception):
-
-  def __str__(self):
-    return "La cantidad de celdas es incorrecta"
-
-
-class HeaderAlreadySet(Exception):
-
-  def __str__(self):
-    return "El numero de columnas no puede ser modificado una vez seteadas filas"
-
-
 class Pyble(object):
 
-  def __init__(self, row_token=None, column_token=None):
+  def __init__(self, row_token=None, column_token=None, 
+              header_color='STRONG_YELLOW', header_background_color='BG_BLUE',
+              cell_a_color='BLUE', cell_b_color='YELLOW',
+              cell_a_background_color='BG_YELLOW', cell_b_background_color='BG_BLUE'):
+  
     self.table        = list()
     self.header       = list()
     self.lines        = list()
     self.longest      = 0
     self.row_token    = '-'
     self.column_token = '|'
+
+    self.c = Colors()
+    self.c.set_header_color(header_color)
+    self.c.set_header_background_color(header_background_color)
+    self.c.set_cell_a_color(header_color)
+    self.c.set_cell_b_color(header_color)
+    self.c.set_cell_a_background_color(header_color)
+    self.c.set_cell_b_background_color(header_color)
+    self.c.set_cell_a_color(cell_a_color)
+    self.c.set_cell_b_color(cell_b_color)
+    self.c.set_cell_a_background_color(cell_a_background_color)
+    self.c.set_cell_b_background_color(cell_b_background_color)
+
+    self.color = False
 
     if row_token != None:
       self.row_token = row_token[0]
@@ -34,6 +41,12 @@ class Pyble(object):
 
   def __str__(self):
     self.get_table_info()
+
+  def get_color(self):
+    return self.color
+
+  def set_color(self, color):
+    self.color = color
 
   def add_column(self, title):
     if len(self.lines) == 0:
@@ -97,7 +110,16 @@ class Pyble(object):
     self.__show_dots(header)
 
     for cell in header:
-      header_as_string += " %s%s %s" % (cell['name'].upper(), " " * (cell['len'] - len(cell['name'])), self.column_token)
+      if self.color:
+        header_as_string += " %s%s%s%s%s %s" % (self.c.get_header_background_color(), 
+                                                self.c.get_header_color(), 
+                                                cell['name'].upper(), 
+                                                " " * (cell['len'] - len(cell['name'])), 
+                                                self.c.ENDC, self.column_token)
+      else:
+        header_as_string += " %s%s %s" % (cell['name'].upper(), 
+                                          " " * (cell['len'] - len(cell['name'])), 
+                                          self.column_token)
 
     print header_as_string
 
@@ -106,6 +128,7 @@ class Pyble(object):
   def __show_lines(self, lines, header, highlight=None):
     lines_as_string = ""
     t = Terminal()
+    color = 0
 
     for line in lines:
       lines_as_string += self.column_token
@@ -115,9 +138,36 @@ class Pyble(object):
           if highlight in name:
             name = "%s" % t.bold_black_on_yellow(name)
 
-          lines_as_string += " %s%s %s" % (name, " " * (cell['len'] - len(cell['name'])), self.column_token)
+          lines_as_string += " %s%s %s" % (name,
+                                           " " * (cell['len'] - len(cell['name'])),
+                                           self.column_token)
         except TypeError:
-          lines_as_string += " %s%s %s" % (name, " " * (cell['len'] - len(str(cell['name']))), self.column_token)
+          if self.color:
+            if color == 1:
+              lines_as_string += " %s%s%s%s%s %s" % (self.c.get_cell_a_background_color(), 
+                                                     self.c.get_cell_a_color(), 
+                                                     name, 
+                                                     " " * (cell['len'] - len(str(cell['name']))), 
+                                                     self.c.ENDC, 
+                                                     self.column_token)
+            else:
+              lines_as_string += " %s%s%s%s%s %s" % (self.c.get_cell_b_background_color(), 
+                                                   self.c.get_cell_b_color(),
+                                                   name,
+                                                   " " * (cell['len'] - len(str(cell['name']))),
+                                                   self.c.ENDC, 
+                                                   self.column_token)
+              
+          else:
+            lines_as_string += " %s%s %s" % (name, 
+                                             " " * (cell['len'] - len(str(cell['name']))),
+                                             self.column_token)
+
+      if self.color:
+        if color == 0:
+          color = 1
+        else:
+          color = 0
 
       lines_as_string += "\n"
 
