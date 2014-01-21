@@ -1,10 +1,10 @@
 Metadata-Version: 1.1
 Name: Pybles
-Version: 1.0.10
+Version: 1.0.11
 Author: Guido Accardo
 Author-email: gaccardo at gmail com
 Home-page: http://pypi.python.org/pypi/Pybles/
-Download-url: https://pypi.python.org/packages/source/P/Pybles/Pybles-1.0.10.tar.gz
+Download-url: https://pypi.python.org/packages/source/P/Pybles/Pybles-1.0.11.tar.gz
 Summary: Module to represent tables in the terminal using python
 License: GPLv2
 Description: ===========
@@ -28,6 +28,11 @@ Description: ===========
         =======
         Changes
         =======
+
+	------
+	1.0.11
+	------
+	* Now version can be consulted from the module
         
         ------
         1.0.10

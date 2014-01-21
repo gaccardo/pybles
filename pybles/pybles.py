@@ -5,6 +5,8 @@ from colors import Colors
 
 import json
 
+VERSION = '1.0.10'
+
 
 class IncorrectNumberOfCells(Exception):
 
@@ -57,7 +59,10 @@ class Pyble(object):
       self.column_token = column_token[0]
 
   def __str__(self):
-    self.get_table_info()
+    return "<Pyble(columns_count='%s', rows_count='%s', color='%s')>" % (len(self.header),
+                                                                         len(self.lines),
+                                                                         self.color)
+                   
 
   def get_color(self):
     return self.color
@@ -67,6 +72,8 @@ class Pyble(object):
 
   def set_header(self, header, force=False):
     if len(self.header) != 0 and force:
+      self.header = header
+    if len(self.header) == 0:
       self.header = header
     else:
       raise HeaderAlreadySetNotForce
