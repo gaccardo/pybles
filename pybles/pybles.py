@@ -95,6 +95,9 @@ class Pyble(object):
     else:
       raise IncorrectNumberOfCells
 
+  def add_separator(self):
+    pass
+
   def __get_columns_count(self):
     return len(self.header)
 
