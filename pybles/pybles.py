@@ -5,7 +5,7 @@ from colors import Colors
 
 import json
 
-VERSION = '1.0.10'
+VERSION = '1.0.12'
 
 
 class IncorrectNumberOfCells(Exception):

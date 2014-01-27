@@ -7,3 +7,4 @@ v1.0.7, 15/01/2014 -- Color support
 v1.0.8, 16/01/2014 -- Translations fixes
 v1.0.9, 16/01/2014 -- Multiple color lines are supported
 v1.0.10, 16/01/2014 -- PyPi classifiers and package version corrections
+v1.0.12, 27/01/2014 -- Now pybles supports separators

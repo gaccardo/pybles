@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: Pybles
-Version: 1.0.11
+Version: 1.0.12
 Author: Guido Accardo
 Author-email: gaccardo at gmail com
 Home-page: http://pypi.python.org/pypi/Pybles/
@@ -29,10 +29,15 @@ Description: ===========
         Changes
         =======
 
-	------
-	1.0.11
-	------
-	* Now version can be consulted from the module
+        ------
+        1.0.12
+        ------
+        * Now pybles supports separators
+
+      	------
+      	1.0.11
+      	------
+      	* Now version can be consulted from the module
         
         ------
         1.0.10
