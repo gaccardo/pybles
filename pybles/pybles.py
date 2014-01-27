@@ -96,7 +96,14 @@ class Pyble(object):
       raise IncorrectNumberOfCells
 
   def add_separator(self):
-    pass
+    empty = list()
+
+    for i in range(len(self.header)):
+      empty.append(i)
+
+    empty[0] = '_SEPARATOR_'
+
+    self.lines.append(empty)
 
   def __get_columns_count(self):
     return len(self.header)
@@ -141,6 +148,15 @@ class Pyble(object):
 
     print dots
 
+  def __get_dots(self, header):
+    dots = 0
+    for cell in header:
+      dots += cell['len']
+
+    dots = self.row_token * (dots + (3 * len(header)) + 1)
+
+    return dots
+
   def __show_header(self, header):
     t = Terminal()
     header_as_string = self.column_token
@@ -169,8 +185,16 @@ class Pyble(object):
     color = 0
 
     for line in lines:
-      lines_as_string += self.column_token
+
+      if line[0]['name'] == '_SEPARATOR_':
+        #import pdb;pdb.set_trace()
+        lines_as_string += "%s\n" % self.__get_dots(header)
+        continue
+      else:
+        lines_as_string += self.column_token
+
       for cell in line:
+
         try:
           name = cell['name']
           if highlight in name:
