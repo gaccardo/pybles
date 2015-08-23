@@ -10,9 +10,7 @@ This is a module designed to make table representations very easy and fast. This
 
     PB = pybles.Pyble()
 
-    PB.add_column('First Name')
-
-    PB.add_column('Last Name')
+    PB.set_header(['First Name', 'Last Name'])
 
     PB.add_line(['John', 'Doe'])
 
