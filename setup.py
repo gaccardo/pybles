@@ -4,7 +4,7 @@ import textwrap
 
 setup(
     name='Pybles',
-    version='1.0.12',
+    version='1.0.13',
     author='Guido Accardo',
     author_email='gaccardo@gmail.com',
     packages=['pybles'],

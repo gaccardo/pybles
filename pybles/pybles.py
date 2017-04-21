@@ -5,7 +5,7 @@ from colors import Colors
 
 import json
 
-VERSION = '1.0.12'
+VERSION = '1.0.13'
 
 
 class IncorrectNumberOfCells(Exception):
@@ -34,6 +34,7 @@ class Pyble(object):
     self.table        = list()
     self.header       = list()
     self.lines        = list()
+    self.title        = None
     self.longest      = 0
     self.row_token    = '-'
     self.column_token = '|'
@@ -69,6 +70,9 @@ class Pyble(object):
 
   def set_color(self, color):
     self.color = color
+
+  def add_title(self, title):
+    self.title = title
 
   def set_header(self, header, force=False):
     if len(self.header) != 0 and force:
@@ -156,6 +160,11 @@ class Pyble(object):
     dots = self.row_token * (dots + (3 * len(header)) + 1)
 
     return dots
+
+  def __show_title(self):
+    line = "-" * (len(self.title) + 2)
+    print " %s" % line
+    print "/ %s \\" % self.title.upper()
 
   def __show_header(self, header):
     t = Terminal()
@@ -255,6 +264,9 @@ class Pyble(object):
     header, lines = self.__configure_length(self.header, self.lines)
     header, lines = self.__set_column_length(header, lines)
 
+    if self.title is not None:
+      self.__show_title()
+
     if len(header) != 0:
       self.__show_header(header)
 
@@ -349,6 +361,7 @@ class FullScreenPyble(object):
     header, lines = self.__configure_length(self.header, self.lines)
     header, lines = self.__set_column_length(header, lines)
 
+    print self.title
     self.__show_header(header, w)
 
 

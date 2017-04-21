@@ -8,6 +8,7 @@ a = pybles.Pyble(header_color='STRONG_RED', header_background_color='BG_WHITE')
 #a.add_column('Last Name')
 
 a.set_header(['First Name', 'Last Name', 'DNI'])
+a.add_title('This is a title')
 
 a.add_line(['John', 'Doe', '3434556'])
 a.add_line(['Tito', 'Puente', '5434990'])
